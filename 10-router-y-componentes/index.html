@@ -9,28 +9,33 @@
     .piramide {
       width: 500px;
     }
+    .error {
+      color: red;
+    }
+    .no_error {
+      color: blue;
+    }
   </style>
   <body>
+    
+    
     <h1 class="titles" style="color: white; background-color: green; text-align: center;">
-      FIRST STEPS IN VUE.JS
+      - VUE ROUTER
     </h1>
+
     <div id="app">
-      <div v-if="value > 5">Value es mayor que 5</div>
-      <div v-else-if="value == 5">es visible</div>
-      <div v-else="value < 5">Value es menor que 5</div>
+      <router-link to="/">Home</router-link>
+      <router-link to="/lists">List</router-link>
+  
+      <router-view></router-view>
+    </div>
 
-      <ul>
-        <li v-for="person in people">{{ person }}</li>
-      </ul>
-
-      <div v-html="insertHtml"></div>
-
-      <div >Piramide</div>
-      <img class="piramide" v-bind:src="src" :alt="alt" title="alt">
 
     </div>
 
     <script type="text/javascript" src="vue.js"></script>
+    <script type="text/javascript" src="vue-router.js"></script>
+    <script type="text/javascript" src="components/list.js"></script>
     <script type="text/javascript" src="practica.js"></script>
   </body>
 </html>

@@ -15,18 +15,10 @@
       FIRST STEPS IN VUE.JS
     </h1>
     <div id="app">
-      <div v-if="value > 5">Value es mayor que 5</div>
-      <div v-else-if="value == 5">es visible</div>
-      <div v-else="value < 5">Value es menor que 5</div>
-
-      <ul>
-        <li v-for="person in people">{{ person }}</li>
-      </ul>
-
-      <div v-html="insertHtml"></div>
-
-      <div >Piramide</div>
-      <img class="piramide" v-bind:src="src" :alt="alt" title="alt">
+      <button v-on:click="incrementar" type="">Incrementar</button>
+      <button v-on:click="decrementar" type="">Decrementar</button>
+      {{ numero }}
+      <h1 :style="{color:'blue', fontSize:numero + 'px' }">Juan estamos creciendo a ...! {{ numero }}px</h1>
 
     </div>
 

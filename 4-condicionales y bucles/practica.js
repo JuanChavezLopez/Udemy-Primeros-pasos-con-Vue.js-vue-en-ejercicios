@@ -6,7 +6,9 @@ new Vue({
         value: 2,
         isVisible: false,
         people: ['Andres', 'Juan', 'Pepe', 'Maria'],
-        insertHtml: '<p>Juan Amazing</p>'
+        insertHtml: '<p>Juan Amazing</p>',
+        src: 'https://www.ecestaticos.com/image/clipping/90db3034e449ee2be1be9e64f285527b/como-se-construyo-la-gran-piramide-de-guiza-el-misterio-por-fin-desvelado.jpg',
+        alt: 'Descripcion de la imagen'
     },
     computed: {
         reverseMessage: function() {

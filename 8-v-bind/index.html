@@ -9,24 +9,28 @@
     .piramide {
       width: 500px;
     }
+    .error {
+      color: red;
+    }
+    .no_error {
+      color: blue;
+    }
   </style>
   <body>
+    
+    
     <h1 class="titles" style="color: white; background-color: green; text-align: center;">
       FIRST STEPS IN VUE.JS
     </h1>
     <div id="app">
-      <div v-if="value > 5">Value es mayor que 5</div>
-      <div v-else-if="value == 5">es visible</div>
-      <div v-else="value < 5">Value es menor que 5</div>
+      <h1 v-bind:class="{ error: p_error, no_error: !p_error }">Esto es un texto</h1>
+      <h1 v-show="p_error">Esto es un texto</h1>
+      <h1 v-if="p_error">Esto es un texto</h1>
 
-      <ul>
-        <li v-for="person in people">{{ person }}</li>
-      </ul>
-
-      <div v-html="insertHtml"></div>
-
-      <div >Piramide</div>
-      <img class="piramide" v-bind:src="src" :alt="alt" title="alt">
+      <div>
+        <input type="text" v-model="message">
+      </div>         
+      <p>{{ message }}</p>
 
     </div>
 
