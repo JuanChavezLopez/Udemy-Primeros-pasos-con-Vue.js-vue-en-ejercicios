@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .piramide {
+      width: 500px;
+    }
+    .error {
+      color: red;
+    }
+    .no_error {
+      color: blue;
+    }
+  </style>
+  <body>
+    <h1
+      class="titles"
+      style="color: white; background-color: green; text-align: center"
+    >
+      ROUTES Y COMPONENTS
+    </h1>
+    <div class="container">
+      <div id="app">
+        <div class="form-group">
+          <label for="">Nombre</label>
+          <input  class="form-control" type="text" v-model="filterField" />
+        </div>
+        <div class="form-group">
+          <label for="">Inactivos</label>
+          <input   type="checkbox" v-model="filterFieldInactive" />
+        </div>
+        <div class="form-group">
+          <label for="">Activos</label>
+          <input   type="checkbox" v-model="filterFieldActive" />
+        </div>
+
+        <table class="table">
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Activo</th>
+          </tr>
+          <tr v-if="filter(person)" v-for="person in people">
+            <td>{{ person.name }}</td>
+            <td>{{ person.surname }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.active }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vue.js"></script>
+    <script
+      type="text/javascript"
+      src="components/ListAlertPropsDefault.js"
+    ></script>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          languages: ["Javascript", "c++", "html", "python", "kotlin"],
+          filterField: "",
+          filterFieldInactive: false,  /* los checkbox estan en false, es que estan desactivados. */
+          filterFieldActive: 0,
+          people: [
+            { name: "Andres", surname: "Cruz", age: 28, active: true },
+            { name: "Juan", surname: "Flores", age: 27, active: true },
+            { name: "Andres", surname: "Cruz", age: 24, active: false },
+            { name: "Elena", surname: "Chavez", age: 29, active: true },
+            { name: "Pepe", surname: "Cruz", age: 21, active: true },
+            { name: "Andres", surname: "Cruz", age: 28, active: false },
+            { name: "Andres", surname: "Cruz", age: 28, active: true },
+            { name: "Andres", surname: "Cruz", age: 28, active: true },
+            { name: "Juan", surname: "Flores", age: 27, active: true },
+            { name: "Andres", surname: "Cruz", age: 24, active: false },
+            { name: "Elena", surname: "Chavez", age: 29, active: true },
+            { name: "Pepe", surname: "Cruz", age: 21, active: true },
+            { name: "Andres", surname: "Cruz", age: 28, active: false },
+            { name: "Andres", surname: "Cruz", age: 28, active: true },
+          ],
+        },
+        methods: {
+          filter(person) {
+            console.log(person.name + " " + this.filterFieldActive);
+            return (
+              person.name.toLocaleLowerCase().indexOf(this.filterField.toLocaleLowerCase()) >= 0
+            );
+          },
+        },
+      });
+    </script>
+    <!-- <script type="text/javascript" src="app.js"></script> -->
+  </body>
+</html>

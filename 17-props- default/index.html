@@ -25,20 +25,25 @@
     </h1>
     <div class="container">
       <div id="app">
-        <router-link to="/">Home</router-link>
-        <router-link to="/lists_person">List Persons</router-link>
-        <router-link to="/lists_programing">List Programacion</router-link>
-    
-        <router-view></router-view>
+
+        <list-alert-default :message="name"></list-alert-default>
+
+
       </div>
     </div>
 
     <script type="text/javascript" src="vue.js"></script>
     <script type="text/javascript" src="vue-router.js"></script>
-    <script type="text/javascript" src="components/ListsPerson.js"></script>
-    <script type="text/javascript" src="components/ListsPrograming.js"></script>
-    <script type="text/javascript" src="components/ListAlert.js"></script>
-    <script type="text/javascript" src="components/ListAlertSuccess.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="components/ListAlertPropsDefault.js"></script>
+
+    <script>
+      var app = new Vue({
+        el:'#app',
+        data: {
+          name: "Hola mundo"
+        }
+      })
+    </script>
+    <!-- <script type="text/javascript" src="app.js"></script> -->
   </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  </head>
+  <style>
+    .piramide {
+      width: 500px;
+    }
+  </style>
+  <body>
+    <h1 class="titles" style="color: white; background-color: green; text-align: center;">
+      FIRST STEPS IN VUE.JS
+    </h1>
+    <div id="app">
+
+      <img-post :url="img_pixa"></img-post>
+
+
+      <div v-if="value > 5">Value es mayor que 5</div>
+      <div v-else-if="value == 5">es visible</div>
+      <div v-else="value < 5">Value es menor que 5</div>
+
+      <ul>
+        <li v-for="person in people">{{ person }}</li>
+      </ul>
+
+      <ul>
+        <li v-for="(person, index) in people">
+          {{ index }} - {{ person }}
+          <span v-if="index == people.length -1" style="color:red">Vamos juan tu puedes(perfecto)</span></li>
+      </ul>
+      <button class="btn btn-primary" type="" @click="filterPeople()">Filtrar >= de cinco caracteres</button>
+
+      <h1>ARRAY DE OBJETOS</h1>
+      <ul>
+        <li v-for="(person, index) in ArrayObjetos">
+          {{ index }} - {{ person.name }} - {{ person.age }}
+          <span v-if="index == ArrayObjetos.length -1" style="color:blue">Vamos juan tu puedes(perfecto)</span></li>
+      </ul>
+      <input v-model="filtro_edad" type="text">
+      <button class="btn btn-primary" type="" @click="filterPeopleObjets()">Filtrar por edad</button>
+
+      <div v-html="insertHtml"></div>
+
+      <div >Piramide</div>
+      <img class="piramide" v-bind:src="src" :alt="alt" title="alt">
+
+    </div>
+
+    <script type="text/javascript" src="vue.js"></script>
+    <script type="text/javascript" src="vue-router.js"></script>
+    <script type="text/javascript" src="components/imagePost.js"></script>
+    <script type="text/javascript" src="practica.js"></script>
+  </body>
+</html>
