@@ -25,7 +25,7 @@
       class="titles"
       style="color: white; background-color: green; text-align: center"
     >
-      ROUTES Y COMPONENTS
+      VUE - ROUTES Y COMPONENTS
     </h1>
     <div class="container">
       <div id="app">
@@ -33,13 +33,38 @@
           <label for="">Nombre</label>
           <input  class="form-control" type="text" v-model="filterField" />
         </div>
-        <div class="form-group">
-          <label for="">Inactivos</label>
-          <input   type="checkbox" v-model="filterFieldInactive" />
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="">Edad</label>
+              <input  class="form-control" type="text" placeholder="Ingrese edad"  v-model="filterAgeField" />
+            </div>
+          </div>
+          <div class="col-6">
+            <label for="">Tipo de Filtro</label>
+            <br>
+            <select class="form-control" v-model="selectAgeField">
+              <option value="<">&#60;</option>
+              <option value=">">&#62;</option>
+              <option value="<=">&#60;=</option>
+              <option value=">=">&#62;=</option>
+              <option value="==">=</option>
+            </select>
+          </div>
+          <!-- <div class="form-group">
+            <label for="">Edad</label>
+            <input  class="form-control" type="text" placeholder="Ingrese edad"  v-model="filterAgeField" />
+          </div> -->
         </div>
+
         <div class="form-group">
           <label for="">Activos</label>
-          <input   type="checkbox" v-model="filterFieldActive" />
+          <input   type="checkbox" v-on:click="filterFieldInactive = 0" v-model="filterFieldActive" />
+        </div>
+        <div class="form-group">
+          <label for="">Inactivos</label>
+          <input   type="checkbox" v-on:click="filterFieldActive = 0" v-model="filterFieldInactive" />
         </div>
 
         <table class="table">
@@ -49,7 +74,7 @@
             <th>Edad</th>
             <th>Activo</th>
           </tr>
-          <tr v-if="filter(person)" v-for="person in people">
+          <tr v-show="filter(person)" v-for="person in people">
             <td>{{ person.name }}</td>
             <td>{{ person.surname }}</td>
             <td>{{ person.age }}</td>
@@ -71,6 +96,8 @@
         data: {
           languages: ["Javascript", "c++", "html", "python", "kotlin"],
           filterField: "",
+          filterAgeField: "",
+          selectAgeField: "==",
           filterFieldInactive: false,  /* los checkbox estan en false, es que estan desactivados. */
           filterFieldActive: 0,
           people: [
@@ -93,9 +120,50 @@
         methods: {
           filter(person) {
             console.log(person.name + " " + this.filterFieldActive);
-            return (
-              person.name.toLocaleLowerCase().indexOf(this.filterField.toLocaleLowerCase()) >= 0
-            );
+
+            // ---SOLUCION 1
+            // var show = true;
+            // indexOf-> si no hay coincidencias devuelve un -1
+            // if(person.name.toLocaleLowerCase().indexOf(this.filterField.toLocaleLowerCase()) < 0)
+            // show = false; /* el elemento no es visible */
+            // else if (person.active == false && this.filterFieldActive)
+            // show = false; /* el elemento no es visible */
+            // else if (person.active == true && this.filterFieldInactive)
+            // show = false; /* el elemento no es visible */
+            // return show;
+
+
+            // ---SOLUCION 2
+            // var show = true;
+            // // indexOf-> si no hay coincidencias devuelve un -1
+            // if(person.name.toLocaleLowerCase().indexOf(this.filterField.toLocaleLowerCase()) < 0)
+            // show = false; /* el elemento no es visible */
+
+            // if(this.filterAgeField !="" && person.age != this.filterAgeField)
+            // show = false; /* el elemento no es visible */
+            
+            // else if (person.active == false && this.filterFieldActive)
+            // show = false; /* el elemento no es visible */
+            // else if (person.active == true && this.filterFieldInactive)
+            // show = false; /* el elemento no es visible */
+            // return show;
+
+            // ---SOLUCION 3 ---FILTRO PARA LAS EDADES COMPUESTAS
+            var show = true;
+            // indexOf-> si no hay coincidencias devuelve un -1
+            if(person.name.toLocaleLowerCase().indexOf(this.filterField.toLocaleLowerCase()) < 0)
+            show = false; /* el elemento no es visible */
+
+            // if(this.filterAgeField !="" && person.age != this.filterAgeField)
+            console.log(person.age + this.selectAgeField + this.filterAgeField)
+            if(this.filterAgeField != "" )
+            show = eval(this.filterAgeField + this.selectAgeField + person.age); /* el elemento no es visible */
+            
+            else if (person.active == false && this.filterFieldActive)
+            show = false; /* el elemento no es visible */
+            else if (person.active == true && this.filterFieldInactive)
+            show = false; /* el elemento no es visible */
+            return show;
           },
         },
       });
